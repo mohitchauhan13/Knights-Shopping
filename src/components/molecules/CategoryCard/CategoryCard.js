@@ -2,12 +2,12 @@ import "./categoryCard.styles.scss";
 
 const CategoryCard = ({ imageUrl, title }) => {
   return (
-    <div className="category-container">
+    <div className="category-card">
       <div
         className="background-image"
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
-      <div className="category-body-container">
+      <div className="card-title">
         <h1>{title}</h1>
         <p>Shop Now</p>
       </div>
