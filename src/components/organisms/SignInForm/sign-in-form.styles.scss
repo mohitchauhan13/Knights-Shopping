@@ -1,0 +1,19 @@
+.sign-up-container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+
+  h1 {
+    margin: 10px 0;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .form-description {
+    color: rgb(89 130 148);
+    font-size: 18px;
+  }
+}
