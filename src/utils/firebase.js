@@ -5,6 +5,8 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { doc, getFirestore, getDoc, setDoc } from "firebase/firestore";
 
@@ -14,7 +16,7 @@ const {
   REACT_APP_FIREBASE_PROJECT_ID,
   REACT_APP_FIREBASE_STORAGE_BUCKET,
   REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  RAECT_APP_FIREBASE_APP_ID,
+  REACT_APP_FIREBASE_APP_ID,
 } = process.env;
 
 const firebaseConfig = {
@@ -23,7 +25,7 @@ const firebaseConfig = {
   projectId: REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: RAECT_APP_FIREBASE_APP_ID,
+  appId: REACT_APP_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -58,6 +60,7 @@ const authenticateWithGoogle = () => signInWithPopup(auth, provider);
 const db = getFirestore();
 
 const createUserInDB = async (userAuth) => {
+  if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
 
   console.log("---doc ref", userDocRef);
@@ -95,6 +98,11 @@ const SignInAuthUserWithEmailAndPassword = async (email, password) => {
   return await signInWithEmailAndPassword(auth, email, password);
 };
 
+const signOutUser = async () => await signOut(auth);
+
+const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);
+
 export {
   auth,
   authenticateWithGoogle,
@@ -102,4 +110,6 @@ export {
   createUserInDB,
   authenticateWithEmailAndPassword,
   SignInAuthUserWithEmailAndPassword,
+  signOutUser,
+  onAuthStateChangedListener,
 };

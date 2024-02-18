@@ -1,3 +1,4 @@
-import Logo from "./knights-shopping.svg";
+import logo from "./knights-shopping.svg";
+import bagIcon from "./shopping-bag.svg";
 
-export { Logo };
+export { logo, bagIcon };
