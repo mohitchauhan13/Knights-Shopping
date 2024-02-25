@@ -32,4 +32,11 @@
       border-color: #d4c9bc;
     }
   }
+
+  &.secondary {
+    background-color: rgb(3, 35, 49);
+    color: #d4c9bc;
+    border-color: #d4c9bc;
+    font-family: "Protest Riot", sans-serif !important;
+  }
 }

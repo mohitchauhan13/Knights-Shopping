@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./categoryCard.styles.scss";
 
 const CategoryCard = ({ imageUrl, title }) => {
@@ -7,10 +8,10 @@ const CategoryCard = ({ imageUrl, title }) => {
         className="background-image"
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
-      <div className="card-title">
+      <Link to={`shop`} className="card-title">
         <h1>{title}</h1>
         <p>Shop Now</p>
-      </div>
+      </Link>
     </div>
   );
 };

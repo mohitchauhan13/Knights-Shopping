@@ -16,7 +16,7 @@ const CartDropdown = () => {
 
   return (
     <div className="cart-dropdown-container">
-      <div className="cart-items">
+      <div className="cart-items styled-scrollbar">
         {cartItems.map((item) => (
           <CartItem key={item.id} cartItem={item} />
         ))}

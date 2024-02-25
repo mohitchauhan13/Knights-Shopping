@@ -5,11 +5,18 @@
 
   h1 {
     margin: 10px 0;
+    color: #d4c9bc;
+    font-family: "Protest Riot", sans-serif !important;
   }
 
   .buttons-container {
     display: flex;
     justify-content: space-between;
+    gap: 16px;
+
+    @media screen and (max-width: 1080px) {
+      flex-wrap: wrap;
+    }
   }
 
   .form-description {

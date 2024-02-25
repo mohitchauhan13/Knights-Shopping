@@ -28,3 +28,20 @@
 .fw-bold {
   font-weight: 800;
 }
+.styled-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(145, 224, 240) rgb(30, 104, 126);
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgb(145, 224, 240);
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: rgb(145, 224, 240);
+  }
+  &::-webkit-scrollbar-corner {
+    background-color: rgb(30, 104, 126);
+  }
+}
