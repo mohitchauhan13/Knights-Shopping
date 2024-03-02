@@ -3,8 +3,27 @@ import { Home, Shop, Authentication, Checkout } from "./pages";
 import { NavBar } from "./components/organisms";
 
 import "./App.scss";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { createUserInDB, onAuthStateChangedListener } from "./utils/firebase";
+import { setCurrentUser } from "./store/user/user.reducer";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (user) {
+        createUserInDB(user);
+      }
+      const pickedUser =
+        user && (({ accessToken, email }) => ({ accessToken, email }))(user);
+
+      dispatch(setCurrentUser(pickedUser));
+    });
+
+    return unsubscribe;
+  }, [dispatch]);
   return (
     <>
       <NavBar />

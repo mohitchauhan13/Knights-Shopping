@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import { logo } from "../../../assets/icons";
-import { useContext } from "react";
-import { UserContext } from "../../../context/UserContext";
 import { CartDropdown, CartIcon } from "../../molecules";
 
 import "./navBar.styles.scss";
-import { CartContext } from "../../../context/CartContent";
 import { signOutUser } from "../../../utils/firebase";
+import { useSelector } from "react-redux";
+import { selectIsCartOpen } from "../../../store/cart/cart.selector";
+import { selectCurrentUser } from "../../../store/user/user.selector";
 
 const NavBar = () => {
-  const { currentUser } = useContext(UserContext);
-  const { isCartOpen } = useContext(CartContext);
+  const isCartOpen = useSelector(selectIsCartOpen);
+  const currentUser = useSelector(selectCurrentUser);
 
   return (
     <div className="navBar">

@@ -1,24 +1,29 @@
-import { useContext, useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import "./category.styles.scss";
-import { CategoriesContext } from "../../context/CategoriesContext";
+
 import { ProductCard } from "../../components/molecules";
+import { useSelector } from "react-redux";
+import { selectCategories } from "../../store/categories/category.selector";
 
 const Category = () => {
   const { category } = useParams();
-  const { categoriesMap } = useContext(CategoriesContext);
-  const [products, setProducts] = useState(categoriesMap[category]);
+  const categories = useSelector(selectCategories);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    setProducts(categoriesMap[category]);
-  }, [category, categoriesMap]);
+    const relatedProducts = categories
+      .filter((each) => each.title === category)
+      .reduce((_, each) => each.items, []);
+    setProducts(relatedProducts);
+  }, [category, categories]);
 
   return (
     <div className="category-container">
-      <h2 className="category-title">{category.toUpperCase()}</h2>
+      <h2 className="category-title">{category?.toUpperCase()}</h2>
       <div className="category-products-container">
-        {products &&
+        {!!products.length &&
           products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
